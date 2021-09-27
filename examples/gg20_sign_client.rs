@@ -52,18 +52,18 @@ pub fn signup(client: &Client) -> Result<PartySignup, ()> {
 }
 #[allow(clippy::cognitive_complexity)]
 fn main() {
-    if env::args().nth(4).is_some() {
-        panic!("too many arguments")
-    }
-    if env::args().nth(3).is_none() {
-        panic!("too few arguments")
-    }
-    let message_str = env::args().nth(3).unwrap_or_else(|| "".to_string());
-    let message = match hex::decode(message_str.clone()) {
-        Ok(x) => x,
-        Err(_e) => message_str.as_bytes().to_vec(),
-    };
-    let message = &message[..];
+    // if env::args().nth(3).is_some() {
+    //     panic!("too many arguments")
+    // }
+    // if env::args().nth(2).is_none() {
+    //     panic!("too few arguments")
+    // }
+    // let message_str = env::args().nth(3).unwrap_or_else(|| "".to_string());
+    // let message = match hex::decode(message_str.clone()) {
+    //     Ok(x) => x,
+    //     Err(_e) => message_str.as_bytes().to_vec(),
+    // };
+    let message = &[22, 164, 188, 209, 101, 223, 168, 71, 107, 216, 106, 105, 9, 98, 57, 228, 111, 6, 41, 205, 182, 196, 11, 47, 118, 73, 120, 181, 229, 70, 227, 237];
     let client = Client::new();
     // delay:
     let delay = time::Duration::from_millis(25);
@@ -334,7 +334,7 @@ fn main() {
         }
     }
 
-    let message_bn = HSha256::create_hash(&[&BigInt::from_bytes(message)]);
+    let message_bn = BigInt::from_bytes(message); // HSha256::create_hash(&[&BigInt::from_bytes(message)]);
     let input_stage6 = SignStage6Input {
         R_dash_vec: R_dash_vec.clone(),
         R: res_stage5.R.clone(),
