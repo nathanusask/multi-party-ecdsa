@@ -58,5 +58,5 @@ fn main() {
     let (head, tail) = y_vec.split_at(1);
     let y_sum = tail.iter().fold(head[0], |acc, x| acc + x);
 
-    println!("y_sum: x: {:?}, y: {:?}", y_sum.x_coor().unwrap(), y_sum.y_coor().unwrap());
+    println!("y_sum: x: {:?}, y: {:?}", y_sum.x_coor().unwrap().to_hex(), y_sum.y_coor().unwrap().to_hex());
 }
