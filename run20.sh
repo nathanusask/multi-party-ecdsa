@@ -37,5 +37,5 @@ do
     sleep 3
 done
 
-sleep 10
+sleep 3
 killall sm_manager 2> /dev/null

@@ -52,18 +52,13 @@ pub fn signup(client: &Client) -> Result<PartySignup, ()> {
 }
 #[allow(clippy::cognitive_complexity)]
 fn main() {
-    // if env::args().nth(3).is_some() {
-    //     panic!("too many arguments")
-    // }
-    // if env::args().nth(2).is_none() {
-    //     panic!("too few arguments")
-    // }
-    // let message_str = env::args().nth(3).unwrap_or_else(|| "".to_string());
-    // let message = match hex::decode(message_str.clone()) {
-    //     Ok(x) => x,
-    //     Err(_e) => message_str.as_bytes().to_vec(),
-    // };
-    let message = &[22, 164, 188, 209, 101, 223, 168, 71, 107, 216, 106, 105, 9, 98, 57, 228, 111, 6, 41, 205, 182, 196, 11, 47, 118, 73, 120, 181, 229, 70, 227, 237];
+    let messages: Vec<[u8; 32]> = vec![[136, 159, 90, 241, 77, 70, 126, 4, 159, 182, 19, 234, 244, 215, 174, 248, 13, 92, 130, 242, 150, 229, 191, 184, 122, 100, 104, 175, 53, 46, 233, 63]];
+    for message in &messages {
+        sign(message);
+    }
+}
+
+fn sign(message: &[u8; 32]) {
     let client = Client::new();
     // delay:
     let delay = time::Duration::from_millis(25);
